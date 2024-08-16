@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  base:
+    build:
+      context:  ./container-base
+      dockerfile: Dockerfile
+    ports:
+      - 7860:7860
+    tty: true
+    volumes:
+      - .:/root
+    extra_hosts:
+      # - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:172.19.128.1'
+
+  gpu:
+    build:
+      context:  ./container-base
+      dockerfile: Dockerfile.gpu
+    ports:
+      - 7860:7860
+    tty: true
+    volumes:
+      - .:/root
+    extra_hosts:
+      # - 'host.docker.internal:host-gateway'
+      - 'host.docker.internal:172.19.128.1'
